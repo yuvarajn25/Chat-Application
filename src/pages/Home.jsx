@@ -1,7 +1,9 @@
+import { Box } from "@chakra-ui/layout";
 import { Flex } from "@chakra-ui/layout";
 import React from "react";
 import ChatWindow from "../components/ChatWindow";
 import Header from "../components/Header";
+import SearchBar from "../components/SearchBar";
 import UserList from "../components/UserList";
 
 function Home() {
@@ -14,7 +16,10 @@ function Home() {
     >
       <Header user={{ name: "Yuvaraj" }} />
       <Flex height="93vh">
-        <UserList />
+        <Box width="400px" maxHeight="93vh">
+          <SearchBar />
+          <UserList />
+        </Box>
         <ChatWindow />
       </Flex>
     </Flex>

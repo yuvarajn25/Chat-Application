@@ -2,6 +2,7 @@ const initialState = {
   users: [],
   openUserProfile: false,
   currentUser: { name: "" },
+  selectedUser: { name: "" },
 };
 
 export default function (state = initialState, action) {
@@ -20,6 +21,9 @@ export default function (state = initialState, action) {
     }
     case "SET_CURRENT_USER": {
       return { ...state, currentUser: { ...action.currentUser } };
+    }
+    case "SET_SELECTED_USER": {
+      return { ...state, selectedUser: { ...action.selectedUser } };
     }
 
     default:

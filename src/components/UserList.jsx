@@ -10,25 +10,25 @@ function UserList({ dispatch, users }) {
   //   dispatch(getUsers());
   // }, [users]);
 
-  const localUsers = [
-    {
-      id: 1,
-      name: "Yuvaraj",
-      profile:
-        "https://assets.about.me/background/users/y/u/v/yuvarajn25_1550491333_163.jpg",
-    },
-    {
-      id: 2,
-      name: "Yuvaraj Nithynandan",
-    },
-  ];
+  // const localUsers = [
+  //   {
+  //     id: 1,
+  //     name: "Yuvaraj",
+  //     profile:
+  //       "https://assets.about.me/background/users/y/u/v/yuvarajn25_1550491333_163.jpg",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Yuvaraj Nithynandan",
+  //   },
+  // ];
 
-  for (let i = 3; i <= 100; i++)
-    localUsers.push({ id: i, name: `Yuvaraj ${i}` });
+  // for (let i = 3; i <= 100; i++)
+  //   localUsers.push({ id: i, name: `Yuvaraj ${i}` });
   return (
-    <CustomScrollbar scrolltobottom={false} style={{ width: "300px" }}>
-      <List margin="0px 0px 20px 0px">
-        {localUsers.map((user) => (
+    <CustomScrollbar style={{ height: "90%" }} scrolltobottom={false}>
+      <List margin="0px 0px 0px 0px">
+        {users.users.map((user) => (
           <ListItem key={user.id}>
             <UserItem user={user} />
           </ListItem>
@@ -37,5 +37,8 @@ function UserList({ dispatch, users }) {
     </CustomScrollbar>
   );
 }
+const mapStateToProps = (state, props) => {
+  return { ...state, ...props };
+};
 
-export default connect()(UserList);
+export default connect(mapStateToProps)(UserList);
