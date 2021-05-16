@@ -14,7 +14,7 @@ export default function MessageList() {
 
   return (
     <CustomScrollbar
-      scrollToBottom={true}
+      scrolltobottom={true}
       style={{ backgroundColor: "#34b7f1" }}
     >
       <Box backgroundColor="gray.100">

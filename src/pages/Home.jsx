@@ -12,8 +12,8 @@ function Home() {
       width="100%"
       height="100vh"
     >
-      <Header />
-      <Flex height="95vh">
+      <Header user={{ name: "Yuvaraj" }} />
+      <Flex height="93vh">
         <UserList />
         <ChatWindow />
       </Flex>

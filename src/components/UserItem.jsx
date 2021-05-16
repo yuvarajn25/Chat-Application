@@ -3,7 +3,6 @@ import { Avatar } from "@chakra-ui/avatar";
 import { Flex, Text } from "@chakra-ui/layout";
 
 function UserItem({ user }) {
-  console.log({ user });
   return (
     <Flex
       width="100%"

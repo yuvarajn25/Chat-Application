@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { List, ListItem, Text } from "@chakra-ui/layout";
 import UserItem from "./UserItem";
-import { Box } from "@chakra-ui/layout";
 import CustomScrollbar from "./CustomScrollBar";
+import { connect } from "react-redux";
+import { getUsers } from "../redux/actions/users";
 
-function UserList() {
-  const users = [
+function UserList({ dispatch, users }) {
+  // useEffect(async () => {
+  //   dispatch(getUsers());
+  // }, [users]);
+
+  const localUsers = [
     {
       id: 1,
       name: "Yuvaraj",
@@ -18,11 +23,12 @@ function UserList() {
     },
   ];
 
-  for (let i = 3; i <= 100; i++) users.push({ id: 1, name: `Yuvaraj ${i}` });
+  for (let i = 3; i <= 100; i++)
+    localUsers.push({ id: i, name: `Yuvaraj ${i}` });
   return (
-    <CustomScrollbar style={{ width: "300px" }}>
+    <CustomScrollbar scrolltobottom={false} style={{ width: "300px" }}>
       <List margin="0px 0px 20px 0px">
-        {users.map((user) => (
+        {localUsers.map((user) => (
           <ListItem key={user.id}>
             <UserItem user={user} />
           </ListItem>
@@ -32,4 +38,4 @@ function UserList() {
   );
 }
 
-export default UserList;
+export default connect()(UserList);

@@ -1,10 +1,22 @@
-import { Flex } from "@chakra-ui/layout";
+import { Flex, Text } from "@chakra-ui/layout";
 import React from "react";
+import { connect } from "react-redux";
+import UserMenu from "./UserMenu";
 
-export default function Header() {
+function Header() {
   return (
-    <Flex height="5vh" bgColor="blue.200" alignItems="center">
-      Chat application
+    <Flex
+      justifyContent="space-between"
+      height="7vh"
+      bgColor="blue.200"
+      alignItems="center"
+    >
+      <Text paddingLeft="10px" fontSize="1.2em" fontWeight="bold">
+        Chat Application
+      </Text>
+      <UserMenu />
     </Flex>
   );
 }
+
+export default connect()(Header);

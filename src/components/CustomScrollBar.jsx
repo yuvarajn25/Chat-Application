@@ -11,11 +11,11 @@ const renderThumb = ({ style, ...props }) => {
 
 const CustomScrollbar = (props) => {
   const scrollRef = useRef();
-  const { scrollToBottom } = props;
+  const { scrolltobottom } = props;
 
   useEffect(() => {
-    if (scrollToBottom) scrollRef.current.scrollToBottom();
-  }, [scrollToBottom]);
+    if (scrolltobottom) scrollRef.current.scrollToBottom();
+  }, [scrolltobottom]);
   return (
     <Scrollbars
       renderThumbHorizontal={renderThumb}
