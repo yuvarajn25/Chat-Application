@@ -52,11 +52,11 @@ button {
 }
 
 .message-sent {
-  float: left;
+  float: right;
   background-color: #ece5dd;
 }
 
 .message-received {
-  float: right;
+  float: left;
   background-color: #dcf8c6;
 }

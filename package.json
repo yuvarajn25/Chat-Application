@@ -12,6 +12,8 @@
     "@emotion/styled": "^11",
     "@supabase/supabase-js": "^1.11.13",
     "framer-motion": "^4.1.16",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
     "react": "^17.0.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^17.0.0",

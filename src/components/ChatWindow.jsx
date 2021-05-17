@@ -2,13 +2,23 @@ import Icon from "@chakra-ui/icon";
 import { Input } from "@chakra-ui/input";
 import { Box } from "@chakra-ui/layout";
 import { Flex } from "@chakra-ui/layout";
-import React from "react";
+import React, { useState } from "react";
 import { FiSend } from "react-icons/fi";
 import { connect } from "react-redux";
+import { postMessage } from "../redux/actions/messages";
 import MessageList from "./MessageList";
 import UserItem from "./UserItem";
 
-function ChatWindow({ users: { selectedUser } }) {
+function ChatWindow({ dispatch, users: { selectedUser } }) {
+  const [message, setMessage] = useState("");
+
+  const onChange = (event) => setMessage(event.target.value);
+
+  const sendMessage = () => {
+    if (message === "") return;
+    dispatch(postMessage({ content: message, type: "text" }));
+    setMessage("");
+  };
   return (
     <Flex
       justifyItems="flex-end"
@@ -22,8 +32,14 @@ function ChatWindow({ users: { selectedUser } }) {
       </Box>
       <MessageList />
       <Flex alignItems="center" padding="10px">
-        <Input type="text" />
-        <Icon as={FiSend} width="70px" fontSize="1.5em" />
+        <Input type="text" value={message} onChange={onChange} />
+        <Icon
+          onClick={sendMessage}
+          cursor="hand"
+          as={FiSend}
+          width="70px"
+          fontSize="1.5em"
+        />
       </Flex>
     </Flex>
   );

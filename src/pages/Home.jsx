@@ -1,12 +1,18 @@
 import { Box } from "@chakra-ui/layout";
 import { Flex } from "@chakra-ui/layout";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import ChatWindow from "../components/ChatWindow";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import UserList from "../components/UserList";
+import { getMessages } from "../redux/actions/messages";
 
-function Home() {
+function Home({ dispatch }) {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (loading) dispatch(getMessages());
+  }, [loading]);
   return (
     <Flex
       border="1px solid #000"
@@ -26,4 +32,7 @@ function Home() {
   );
 }
 
-export default Home;
+const mapStateToProps = (state, props) => {
+  return { ...state, ...props };
+};
+export default connect(mapStateToProps)(Home);

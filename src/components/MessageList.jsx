@@ -1,36 +1,41 @@
 import React from "react";
-import { Flex, Box } from "@chakra-ui/layout";
+import { Box } from "@chakra-ui/layout";
 import CustomScrollbar from "./CustomScrollBar";
-import { Text } from "@chakra-ui/layout";
+import { connect } from "react-redux";
+import { Flex } from "@chakra-ui/layout";
 
-export default function MessageList() {
-  const messages = [];
-
-  for (let i = 1; i <= 100; i++)
-    messages.push({
-      id: i,
-      message: `Sample Sample Sample Sample Sample Sample Sample Sample Sample  ${i}`,
-    });
-
+function MessageList({ messages = [], currentUser = {} }) {
+  console.log(messages);
   return (
-    <CustomScrollbar
-      scrolltobottom={true}
-      style={{ backgroundColor: "#34b7f1" }}
-    >
-      <Box backgroundColor="gray.100">
+    <CustomScrollbar scrolltobottom={true}>
+      <Box backgroundColor="#34b7f1" height="100%" direction="column-reverse">
         {messages.map((m, i) => (
           <p
             className={
-              i % 2 === 0
+              currentUser.id === m.from_user
                 ? "message-item message-sent"
                 : "message-item message-received"
             }
             key={m.id}
           >
-            {m.message}
+            {m.content}
           </p>
         ))}
       </Box>
     </CustomScrollbar>
   );
 }
+
+const mapStateToProps = (
+  { users: { selectedUser, currentUser }, messages },
+  props
+) => {
+  console.log(messages);
+  console.log(selectedUser);
+  return {
+    messages: messages.messages[selectedUser.id],
+    currentUser,
+    ...props,
+  };
+};
+export default connect(mapStateToProps)(MessageList);
