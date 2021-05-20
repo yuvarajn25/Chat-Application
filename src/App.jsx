@@ -15,14 +15,17 @@ import supabase from "./supabase";
 import { connect } from "react-redux";
 
 import { getCurrentuser } from "./redux/actions/users";
+import { subscribe } from "./redux/actions/messages";
 
 function App(props) {
   const [session, setSession] = useState(supabase.auth.session());
 
   supabase.auth.onAuthStateChange((event, session) => {
-    console.log(session);
     setSession(session);
-    if (session?.user?.id) props.dispatch(getCurrentuser());
+    if (session?.user?.id) {
+      props.dispatch(getCurrentuser());
+      props.dispatch(subscribe());
+    }
   });
 
   const PrivateRoute = ({ component: Component, ...rest }) => {

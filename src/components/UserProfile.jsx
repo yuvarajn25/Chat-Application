@@ -48,8 +48,6 @@ function UserProfile({ dispatch, users: { openUserProfile, currentUser } }) {
   }, [currentUser]);
 
   const onProfilePick = (event) => {
-    console.log(event.target.files[0]);
-
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
       reader.onload = (e) => {

@@ -34,7 +34,7 @@ export const saveUserProfile = (user) => {
     if (user.profile && user.profile !== currentUser.profile) {
       const profileName = `profiles/${authUser.id}.png`;
       const bucketName = `chat-application`;
-      console.log(`currentUser.profile`, currentUser.profile);
+
       if (currentUser.profile) {
         const { data, error } = await supabase.storage
           .from(bucketName)
@@ -68,7 +68,6 @@ export const searchUsers = (query) => {
       .not("id", "eq", authUser.id)
       .like("name", `%${query}%`);
 
-    console.log(`searchUsers::`, { users, error });
     dispatch({ type: "SET_USERS", users });
   };
 };

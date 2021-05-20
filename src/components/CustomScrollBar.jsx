@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 
 const renderThumb = ({ style, ...props }) => {
@@ -10,7 +10,7 @@ const renderThumb = ({ style, ...props }) => {
 };
 
 const CustomScrollbar = (props) => {
-  const scrollRef = useRef();
+  const scrollRef = props.scrollRef || useRef();
   const { scrolltobottom } = props;
 
   useEffect(() => {

@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Box } from "@chakra-ui/layout";
 import CustomScrollbar from "./CustomScrollBar";
 import { connect } from "react-redux";
 import { Flex } from "@chakra-ui/layout";
 
 function MessageList({ messages = [], currentUser = {} }) {
-  console.log(messages);
+  const scrollRef = useRef();
+  useEffect(() => {
+    scrollRef.current.scrollToBottom();
+  }, [messages]);
   return (
-    <CustomScrollbar scrolltobottom={true}>
-      <Box backgroundColor="#34b7f1" height="100%" direction="column-reverse">
+    <CustomScrollbar scrollRef={scrollRef} scrolltobottom={true}>
+      <Box backgroundColor="#34b7f1" height="inherit">
         {messages.map((m, i) => (
           <p
             className={
@@ -30,8 +33,6 @@ const mapStateToProps = (
   { users: { selectedUser, currentUser }, messages },
   props
 ) => {
-  console.log(messages);
-  console.log(selectedUser);
   return {
     messages: messages.messages[selectedUser.id],
     currentUser,
